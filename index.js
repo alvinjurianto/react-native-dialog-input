@@ -55,7 +55,7 @@ class DialogInput extends PureComponent{
     }
     let valueTwo = '';
     if (!this.state.openning) {
-      valueTwo = this.state.inputModal;
+      valueTwo = this.state.inputModalTwo;
     }else{
       valueTwo = this.props.initValueTwoTextInput ? this.props.initValueTwoTextInput : '';
     }
