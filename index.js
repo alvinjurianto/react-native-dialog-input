@@ -12,12 +12,12 @@ import {
 class DialogInput extends PureComponent{
   constructor(props){
     super(props);
-    this.state = { inputModal: props.initValueTextInput, openning: true };
+    this.state = { inputModal: props.initValueTextInput, openning: true, inputModalTwo: props.initValueTwoTextInput };
   }
 
   handleOnRequestClose = () => {
     this.props.closeDialog();
-    this.setState({ inputModal: '' });
+    this.setState({ inputModal: '', inputModalTwo:'' });
   };
 
   handleOnKeyPress = () => {
@@ -28,25 +28,38 @@ class DialogInput extends PureComponent{
     this.setState({ inputModal, openning: false });
   };
 
+  handleOnChangeTextTwo = (inputModalTwo) => {
+    this.setState({ inputModalTwo, openning: false });
+  };
+
+
   handleOnCloseDialog = () => {
     this.props.closeDialog();
-    this.setState({ inputModal: '',openning: true });
+    this.setState({ inputModal: '',openning: true, inputModalTwo:'' });
   };
 
   handleSubmit = () => {
-    this.props.submitInput(this.state.inputModal);
-    this.setState({ inputModal: '',openning: true });
+    this.props.submitInput(this.state.inputModal, this.state.inputModalTwo);
+    this.setState({ inputModal: '',openning: true, inputModalTwo:'' });
   };
 
   render(){
     const title = this.props.title || '';
     const hintInput = this.props.hintInput || '';
+    const hintInputTwo = this.props.hintInputTwo || '';
     let value = '';
     if (!this.state.openning) {
       value = this.state.inputModal;
     }else{
       value = this.props.initValueTextInput ? this.props.initValueTextInput : '';
     }
+    let valueTwo = '';
+    if (!this.state.openning) {
+      valueTwo = this.state.inputModal;
+    }else{
+      valueTwo = this.props.initValueTwoTextInput ? this.props.initValueTwoTextInput : '';
+    }
+
 
     const textProps = this.props.textInputProps || null;
     const modalStyleProps = this.props.modalStyle || {};
@@ -85,6 +98,22 @@ class DialogInput extends PureComponent{
                   placeholderTextColor={placeholderTextColor}
                   onChangeText={this.handleOnChangeText}
                   value={value}
+                  />
+                  <TextInput style={styles.input_container}
+                  autoCorrect={(textProps && textProps.autoCorrect==false)?false:true}
+                  autoCapitalize={(textProps && textProps.autoCapitalize)?textProps.autoCapitalize:'none'}
+                  clearButtonMode={(textProps && textProps.clearButtonMode)?textProps.clearButtonMode:'never'}
+                  clearTextOnFocus={(textProps && textProps.clearTextOnFocus==true)?textProps.clearTextOnFocus:false}
+                  keyboardType={(textProps && textProps.keyboardType)?textProps.keyboardType:'default'}
+                  secureTextEntry={(textProps && textProps.secureTextEntry)?textProps.secureTextEntry:false}
+                  maxLength={(textProps && textProps.maxLength > 0)?textProps.maxLength:null}
+                  autoFocus={true}
+                  onKeyPress={this.handleOnKeyPress}
+                  underlineColorAndroid='transparent'
+                  placeholder={hintInputTwo}
+                  placeholderTextColor={placeholderTextColor}
+                  onChangeText={this.handleOnChangeTextTwo}
+                  value={valueTwo}
                   />
               </View>
               <View style={styles.btn_container}>
