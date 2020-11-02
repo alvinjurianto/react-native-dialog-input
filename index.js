@@ -40,7 +40,8 @@ class DialogInput extends PureComponent{
 
   handleSubmit = () => {
     this.props.submitInput(this.state.inputModal, this.state.inputModalTwo);
-    this.setState({ inputModal: '',openning: false, inputModalTwo:'' });
+    this.setState({ inputModal: '',openning: true, inputModalTwo:'' });
+    this.props.closeDialog()
   };
 
   render(){
