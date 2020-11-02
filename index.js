@@ -107,7 +107,7 @@ class DialogInput extends PureComponent{
                   keyboardType={(textProps && textProps.keyboardType)?textProps.keyboardType:'default'}
                   secureTextEntry={(textProps && textProps.secureTextEntry)?textProps.secureTextEntry:false}
                   maxLength={(textProps && textProps.maxLength > 0)?textProps.maxLength:null}
-                  autoFocus={true}
+                  autoFocus={false}
                   onKeyPress={this.handleOnKeyPress}
                   underlineColorAndroid='transparent'
                   placeholder={hintInputTwo}
