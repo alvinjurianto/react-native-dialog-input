@@ -20,18 +20,18 @@ class DialogInput extends PureComponent{
     this.setState({ inputModal: '', inputModalTwo:'' });
   };
 
-  handleOnKeyPressOne = () => {
-    this.setState({ openningOne: false });
-  };
+  // handleOnKeyPressOne = () => {
+  //   this.setState({ openningOne: false });
+  // };
 
   handleOnKeyPressTwo = () => {
     this.setState({ openningTwo: false });
   };
 
 
-  handleOnChangeText = (inputModal) => {
-    this.setState({ inputModal, openningOne: false });
-  };
+  // handleOnChangeText = (inputModal) => {
+  //   this.setState({ inputModal, openningOne: false });
+  // };
 
   handleOnChangeTextTwo = (inputModalTwo) => {
     this.setState({ inputModalTwo, openningTwo: false });
@@ -89,7 +89,7 @@ class DialogInput extends PureComponent{
               <View style={styles.modal_body} >
                 <Text style={styles.title_modal}>{title}</Text>
                 <Text style={[this.props.message ? styles.message_modal : {height:0} ]}>{this.props.message}</Text>
-                <TextInput style={styles.input_container}
+                {/* <TextInput style={styles.input_container}
                   autoCorrect={(textProps && textProps.autoCorrect==false)?false:true}
                   autoCapitalize={(textProps && textProps.autoCapitalize)?textProps.autoCapitalize:'none'}
                   clearButtonMode={(textProps && textProps.clearButtonMode)?textProps.clearButtonMode:'never'}
@@ -104,7 +104,7 @@ class DialogInput extends PureComponent{
                   placeholderTextColor={placeholderTextColor}
                   onChangeText={this.handleOnChangeText}
                   value={value}
-                  />
+                  /> */}
                   <TextInput style={styles.input_container}
                   autoCorrect={(textProps && textProps.autoCorrect==false)?false:true}
                   autoCapitalize={(textProps && textProps.autoCapitalize)?textProps.autoCapitalize:'none'}
