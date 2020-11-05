@@ -12,7 +12,7 @@ import {
 class DialogInput extends PureComponent{
   constructor(props){
     super(props);
-    this.state = { inputModal: props.initValueTextInput, openning: true, inputModalTwo: props.initValueTwoTextInput };
+    this.state = { inputModal: props.initValueTextInput, openningOne: true, openningTwo: true, inputModalTwo: props.initValueTwoTextInput };
   }
 
   handleOnRequestClose = () => {
@@ -20,27 +20,32 @@ class DialogInput extends PureComponent{
     this.setState({ inputModal: '', inputModalTwo:'' });
   };
 
-  handleOnKeyPress = () => {
-    this.setState({ openning: false });
+  handleOnKeyPressOne = () => {
+    this.setState({ openningOne: false });
   };
 
+  handleOnKeyPressTwo = () => {
+    this.setState({ openningTwo: false });
+  };
+
+
   handleOnChangeText = (inputModal) => {
-    this.setState({ inputModal, openning: false });
+    this.setState({ inputModal, openningOne: false });
   };
 
   handleOnChangeTextTwo = (inputModalTwo) => {
-    this.setState({ inputModalTwo, openning: false });
+    this.setState({ inputModalTwo, openningTwo: false });
   };
 
 
   handleOnCloseDialog = () => {
     this.props.closeDialog();
-    this.setState({ inputModal: '',openning: true, inputModalTwo:'' });
+    this.setState({ inputModal: '',openningOne: true, oppeningTwo: true, inputModalTwo:'' });
   };
 
   handleSubmit = () => {
     this.props.submitInput(this.state.inputModal, this.state.inputModalTwo);
-    this.setState({ inputModal: '',openning: true, inputModalTwo:'' });
+    this.setState({ inputModal: '',openning: true, oppeningTwo: true, inputModalTwo:'' });
     this.props.closeDialog()
   };
 
@@ -49,13 +54,13 @@ class DialogInput extends PureComponent{
     const hintInput = this.props.hintInput || '';
     const hintInputTwo = this.props.hintInputTwo || '';
     let value = '';
-    if (!this.state.openning) {
+    if (!this.state.openningOne) {
       value = this.state.inputModal;
     }else{
       value = this.props.initValueTextInput ? this.props.initValueTextInput : '';
     }
     let valueTwo = '';
-    if (!this.state.openning) {
+    if (!this.state.openningTwo) {
       valueTwo = this.state.inputModalTwo;
     }else{
       valueTwo = this.props.initValueTwoTextInput ? this.props.initValueTwoTextInput : '';
@@ -93,7 +98,7 @@ class DialogInput extends PureComponent{
                   secureTextEntry={(textProps && textProps.secureTextEntry)?textProps.secureTextEntry:false}
                   maxLength={(textProps && textProps.maxLength > 0)?textProps.maxLength:null}
                   autoFocus={true}
-                  onKeyPress={this.handleOnKeyPress}
+                  onKeyPress={this.handleOnKeyPressOne}
                   underlineColorAndroid='transparent'
                   placeholder={hintInput}
                   placeholderTextColor={placeholderTextColor}
@@ -109,7 +114,7 @@ class DialogInput extends PureComponent{
                   secureTextEntry={(textProps && textProps.secureTextEntry)?textProps.secureTextEntry:false}
                   maxLength={(textProps && textProps.maxLength > 0)?textProps.maxLength:null}
                   autoFocus={false}
-                  onKeyPress={this.handleOnKeyPress}
+                  onKeyPress={this.handleOnKeyPressTwo}
                   underlineColorAndroid='transparent'
                   placeholder={hintInputTwo}
                   placeholderTextColor={placeholderTextColor}
